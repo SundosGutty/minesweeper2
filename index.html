@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Minesweeper</title>
+</head>
+
+<body onload="init()">
+
+    <div class="heading">
+
+        <h2>Minesweeper</h2>
+        <h3>The game that will blow your mind!</h3>
+    </div>
+
+    <div class="game-info">
+        <span class="lives"> Lives: ❤️❤️ ||</span>
+        <span class="timerDisplay">00:00</span>
+        <h4 class="lose-dis"> You got disqualified! But do not forget, <br>that in life,
+            you lose some you win some. Try Again!
+        </h4>
+        <h4 class="win-dis">'You Rocked it! Play again to see if it was luck or pure skils.</h4>
+
+    </div>
+
+    <div class="btns">
+        <button class="level-btn" onclick="setDifficultyLevel(16)">Go easy on me!</button>
+        <button class="level-btn" onclick="setDifficultyLevel(64)">Upgrade your game!</button>
+        <button class="level-btn" onclick="setDifficultyLevel(144)">Hit me with your best!</button><br>
+        <p class="smiley" onclick="resetGame()">😊</p>
+
+    </div>
+
+
+    </div>
+
+    <div class="board-container">
+        <table>
+            <tbody class="board" oncontextmenu="return false" border="1"></tbody>
+        </table>
+    </div>
+
+
+    <footer>
+        <h5>Presented by: Sundos Gutty</h5>
+    </footer>
+    <script src="utils.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
