@@ -87,15 +87,9 @@ function revealCell(elCell, i, j, event) {
         return
     }
 
-
-    window.addEventListener('contextmenu', (event) => {
-        console.log(event.button)
-    })
-
     gBoard[i][j].isShown = true
 
     if (gBoard[i][j].isMine) {
-
         var randLocation = { i: i, j: j }
         renderCell(randLocation, MINE_ICON)
         gLives++
@@ -118,8 +112,8 @@ function revealCell(elCell, i, j, event) {
             elCell.innerText = count
         }
     }
-
 }
+
 
 // function revealNeigboors() {
 //     var nonBomsnegs = revealNonBomb(gBoard, i, j)
@@ -132,6 +126,7 @@ function revealCell(elCell, i, j, event) {
 //     elCell.innerText = count
 // }
 
+
 function markCell(i, j) {
     var location = { i, j }
     renderCell(location, FLAG_ICON)
@@ -139,6 +134,7 @@ function markCell(i, j) {
     gGame.markedCount++
     checkVictory()
 }
+
 
 function checkVictory() {
     var isVictory = true

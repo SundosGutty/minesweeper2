@@ -59,40 +59,29 @@ function countNegs(mat, rowIdx, colIdx) {
 
 
 
-function revealNonBomb(mat, rowIdx, colIdx) {
-    var nonbombNegs = []
-    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
-        if (i < 0 || i > mat.length - 1) continue
-        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
-            if (j < 0 || j > mat[0].length - 1) continue
-            if (i === rowIdx && j === colIdx) continue
-            nonbombNegs.push({ i, j })
-        }
-    }
-    console.log()
-    for (var k = 0; k < nonbombNegs.length; k++) {
-        displayCount(nonbombNegs[k])
-    }
+// function revealNonBomb(mat, rowIdx, colIdx) {
+//     var nonbombNegs = []
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         if (i < 0 || i > mat.length - 1) continue
+//         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//             if (j < 0 || j > mat[0].length - 1) continue
+//             if (i === rowIdx && j === colIdx) continue
+//             nonbombNegs.push({ i, j })
+//         }
+//     }
+//     console.log()
+//     for (var k = 0; k < nonbombNegs.length; k++) {
+//         displayCount(nonbombNegs[k])
+//     }
 
 
-}
+// }
 
+// function displayCount(nonbombNeg) {
+//     countNegs(nonbombNeg)
+//     console.log(nonbombNeg)
+//     nonbombNeg.isShown = True
 
-
-
-
-
-function displayCount(nonbombNeg) {
-    countNegs(nonbombNeg)
-    console.log(nonbombNeg)
-    nonbombNeg.isShown = True
-
-
-
-
-
-
-
-}
+// }
 
 
