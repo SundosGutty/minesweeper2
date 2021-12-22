@@ -5,7 +5,7 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-html body{
+body{
     overflow: hidden;
     height: auto;
 }
@@ -65,3 +65,10 @@ html body{
 .smiley{
     cursor: pointer;
 }
+
+
+
+.revealed{
+    background-color: lightpink;
+}
+
