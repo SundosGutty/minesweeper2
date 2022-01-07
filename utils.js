@@ -8,7 +8,6 @@ function printBoard(selector) {
         }
         strHTML += '</tr>'
     }
-
     var elContainer = document.querySelector(selector)
     elContainer.innerHTML = strHTML
 }

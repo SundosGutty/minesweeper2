@@ -1,30 +1,32 @@
 'use strict'
 
+//icons
 const MINE_ICON = '💣'
 const FLAG_ICON = '🏳️'
-const WIN_DISPLAY = document.querySelector('.win-dis')
-const LOOSE_DISPLAY = document.querySelector('.lose-dis')
-const USER_HEARTS = document.querySelector('.lives')
+const SAFE = '🥞'
 const EMPTY = ''
 
+//html-elements
+const WIN_DISPLAY = document.querySelector('.win-dis')
+const LOOSE_DISPLAY = document.querySelector('.lose-dis')
+const elLivesCont = document.querySelector('.lives-container')
 
+//globals
 var gLevel = {
     boardSize: 16,
     boardLength: Math.sqrt(16),
     numOfMines: 2
 }
-
 var gGame = {
     isOn: false,
     shownCount: 0,
     markedCount: 0,
     secsPassed: 0
 }
-
 var gBoard
 var gTimerInterval
+var gSafeClicksInterval
 var gLives = 2 //given 2 lives - at 2 the player looses
-
 
 
 function init() {
@@ -37,10 +39,8 @@ function init() {
 
 function createBoard(boardLength) {
     var board = []
-
     for (var i = 0; i < boardLength; i++) {
         board[i] = []
-
         for (var j = 0; j < boardLength; j++) {
             board[i][j] = {
                 minesAroundCount: 0,
@@ -84,61 +84,58 @@ function handleClick(elCell, i, j, event) {
         startTimer()
         placeMines(i, j)
         setMinesNegsCount()
-
     }
     if (event.button === 2) {
         markCell(i, j)
-
     } else {
         revealCell(elCell, i, j)
         gGame.shownCount++
-
     }
     checkVictory()
 }
 
 
+
 // left click
 function revealCell(elCell, i, j) {
-    if (gBoard[i][j].isMarked || gBoard[i][j].isShown) return
-
-    if (!gBoard[i][j].isShown) {
-        gBoard[i][j].isShown = !gBoard[i][j].isShown
+    let currCell = gBoard[i][j]
+    console.log(currCell)
+    if (currCell.isMarked || currCell.isShown) return
+    if (!currCell.isShown) {
+        currCell.isShown = !currCell.isShown
         var randLocation = { i: i, j: j }
-        if (gBoard[i][j].isMine) {
+        if (currCell.isMine) {
             renderCell(randLocation, MINE_ICON)
-
             gLives--
-            gBoard[i][j].minesAroundCount++
+            currCell.minesAroundCount++
             usersLives()
         } else {
-            if (gBoard[i][j].minesAroundCount === 0) {
+            if (currCell.minesAroundCount === 0) {
                 renderCell(randLocation, EMPTY);
                 revealNegsOfZ(i, j)
                 return;
             } else {
-                renderCell(randLocation, gBoard[i][j].minesAroundCount);
+                renderCell(randLocation, currCell.minesAroundCount);
                 return;
             }
         }
     }
-
 }
-
-
 
 //right click
 function markCell(i, j) {
-    if (gBoard[i][j].isShown) return
+    let newBoard = gBoard[i][j]
+
+    if (newBoard.isShown) return
     var location = { i, j }
-    if (gBoard[i][j].isMarked) {
-        gBoard[i][j].isMarked = false
+    if (newBoard.isMarked) {
+        newBoard.isMarked = false
         gGame.markedCount--
         renderCell(location, EMPTY)
         var elCell = document.querySelector(`.cell${location.i}-${location.j}`)
         elCell.classList.remove('revealed')
     } else {
-        gBoard[i][j].isMarked = true
+        newBoard.isMarked = true
         renderCell(location, FLAG_ICON)
         gGame.markedCount++
 
@@ -148,9 +145,9 @@ function markCell(i, j) {
 
 
 function usersLives() {
-    if (gLives === 1) USER_HEARTS.innerText = ' Lives: ❤️||'
+    if (gLives === 1) elLivesCont.innerText = ' Lives: ❤️||'
     else {
-        USER_HEARTS.innerText = 'You have no Lives||'
+        elLivesCont.innerText = 'You have no Lives||'
         gameOver()
     }
 }
@@ -164,10 +161,7 @@ function checkVictory() {
         WIN_DISPLAY.style.display = 'block'
         document.querySelector('.smiley').innerText = '😎'
     }
-
 }
-
-
 
 function gameOver() {
     LOOSE_DISPLAY.style.display = 'block'
@@ -184,7 +178,7 @@ function resetGame() {
     document.querySelector('.smiley').innerText = '😊'
     clearInterval(gTimerInterval)
     gBoard = createBoard(gLevel.boardLength)
-    USER_HEARTS.innerText = 'Lives: ❤️❤️||'
+    elLivesCont.innerText = 'Lives: ❤️❤️||'
     printBoard('.board')
     gGame.isOn = true
     gLives = 2

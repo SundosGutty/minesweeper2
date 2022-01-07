@@ -1,20 +1,28 @@
 *{
-    text-align: center;
-    background-color: rgb(206, 96, 96);
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
 }
 
 body{
-    overflow: hidden;
-    height: auto;
+    text-align: center;
+    background-color: rgb(206, 96, 96);
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+header{
+    padding: 5px 30px;
+}
+
+main{
+    padding: 20px 30px;
+   
 }
 
 .board-container{
     display: inline-block;
     padding-top: 2px;
 }
-
 
 .board, th, td {
         border: 1px solid black;
@@ -26,32 +34,44 @@ body{
        
 }
 
-.level-btn{
-    margin-top: 5px;
-    padding-bottom: 10px;
+.action-btns{
+    padding-top: 20px;
+
+}
+
+
+.action-btns button{
+    margin-left: 5px;
+    padding: 10px 40px;
     cursor: pointer;
     background-color: rosybrown;
     border: 2px solid thistle;
     color: white;
     outline: none;
-    width: 120px;
-    height: 40px;
     border-radius: 4px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400i;
 }
 
-
-
-.level-btn:hover {
+.action-btns button:hover {
     transition-duration: 0.4s;
     background-color: thistle;
     color: black;
     font-weight: bolder;
 }
 
+.board-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 10px;
+}
 
- .lose-dis{
+.safe-clicks-container{
+    cursor: pointer;
+}
+
+
+.lose-dis{
     display: none;
 } 
 
@@ -62,13 +82,20 @@ body{
 
 
 
+
 .smiley{
     cursor: pointer;
 }
 
-
-
 .revealed{
     background-color: lightpink;
+}
+
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
